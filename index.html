@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -264,45 +263,23 @@ section{padding:clamp(60px,8vw,110px) clamp(4%,6vw,7%);}
 @keyframes hotPulse{0%,100%{box-shadow:0 0 0 0 rgba(176,124,106,.4);}50%{box-shadow:0 0 0 8px rgba(176,124,106,0);}}
 
 /* ════════════════════════════
-   FEATURE 2: AI STYLE ADVISOR
+   FEATURE 2: EVENTS WE COVER (Weddings & Mehndi)
 ════════════════════════════ */
-#ai-advisor{background:var(--bg);position:relative;overflow:hidden;}
-#ai-advisor::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(176,124,106,.06),transparent 70%);pointer-events:none;}
-.advisor-hd{text-align:center;max-width:650px;margin:0 auto clamp(32px,5vw,52px);}
-.advisor-hd .stag{justify-content:center;}
-.advisor-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}
-.advisor-form{background:var(--glass2);border:1px solid var(--gb);border-radius:var(--r2);padding:clamp(24px,3vw,36px);}
-.advisor-form-title{font-family:var(--ff-d);font-size:1.4rem;font-weight:400;margin-bottom:6px;}
-.advisor-form-sub{font-size:.8rem;color:var(--txt2);margin-bottom:24px;line-height:1.6;}
-.af-group{margin-bottom:16px;}
-.af-label{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rg);margin-bottom:8px;}
-.af-opts{display:flex;flex-wrap:wrap;gap:7px;}
-.af-opt{padding:7px 14px;border:1px solid var(--gb);border-radius:40px;font-size:.72rem;color:var(--txt2);transition:all var(--t);}
-.af-opt:hover{border-color:var(--rg);color:var(--rg);}
-.af-opt.sel{border-color:var(--rg);color:var(--rg);background:rgba(176,124,106,.12);}
-.af-textarea{width:100%;padding:10px 13px;background:rgba(255,255,255,.04);border:1px solid var(--gb);border-radius:10px;color:var(--txt);font-family:var(--ff-b);font-size:.85rem;resize:none;height:76px;outline:none;transition:border-color var(--t);}
-.af-textarea:focus{border-color:var(--rg);}
-.btn-advisor{width:100%;padding:13px;background:linear-gradient(135deg,var(--fg),var(--rg));color:#fff;border-radius:40px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;transition:all var(--t);display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;}
-.btn-advisor:hover{opacity:.9;transform:translateY(-2px);box-shadow:var(--glow);}
-.btn-advisor:disabled{opacity:.5;transform:none;cursor:not-allowed!important;}
-.advisor-result{background:var(--glass);border:1px solid var(--gb);border-radius:var(--r2);padding:clamp(24px,3vw,36px);min-height:300px;display:flex;flex-direction:column;}
-.advisor-result-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:14px;color:var(--txt3);text-align:center;}
-.advisor-result-empty i{font-size:2.8rem;color:rgba(176,124,106,.2);}
-.advisor-result-empty p{font-size:.82rem;line-height:1.6;max-width:220px;}
-.advisor-result-content{display:none;flex-direction:column;gap:16px;}
-.advisor-result-content.show{display:flex;}
-.result-badge{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--fg-xl);margin-bottom:4px;}
-.result-badge::before{content:'';width:18px;height:1px;background:var(--fg-xl);}
-.result-title{font-family:var(--ff-d);font-size:1.5rem;font-weight:400;color:var(--txt);line-height:1.2;}
-.result-body{font-size:.84rem;color:var(--txt2);line-height:1.75;}
-.result-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
-.result-tag{padding:5px 13px;border-radius:40px;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--gb2);color:var(--rg);}
-.result-loading{display:none;align-items:center;gap:12px;color:var(--txt2);font-size:.82rem;}
-.result-loading.show{display:flex;}
-.spin-dot{width:8px;height:8px;border-radius:50%;background:var(--rg);animation:spinDot 1.4s ease-in-out infinite;}
-.spin-dot:nth-child(2){animation-delay:.2s;}
-.spin-dot:nth-child(3){animation-delay:.4s;}
-@keyframes spinDot{0%,80%,100%{transform:scale(0.4);opacity:.4;}40%{transform:scale(1);opacity:1;}}
+#events{background:var(--bg);position:relative;overflow:hidden;}
+#events::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(176,124,106,.06),transparent 70%);pointer-events:none;}
+.events-hd{text-align:center;max-width:650px;margin:0 auto clamp(32px,5vw,52px);}
+.events-hd .stag{justify-content:center;}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px;max-width:1280px;margin:0 auto;}
+.event-card{position:relative;border-radius:var(--r2);overflow:hidden;border:1px solid var(--gb);aspect-ratio:3/4;transition:all var(--t);}
+.event-card img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
+.event-card:hover img{transform:scale(1.08);}
+.event-card:hover{transform:translateY(-7px);box-shadow:var(--sh);border-color:var(--gb2);}
+.event-card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,20,16,.92) 0%,rgba(13,20,16,.15) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px;}
+.event-card-ico{width:42px;height:42px;border-radius:50%;background:rgba(176,124,106,.18);border:1px solid rgba(176,124,106,.4);display:flex;align-items:center;justify-content:center;color:var(--rg-xl);font-size:1rem;margin-bottom:12px;}
+.event-card-name{font-family:var(--ff-d);font-size:1.2rem;color:#fff;font-weight:400;margin-bottom:4px;}
+.event-card-desc{font-size:.74rem;color:rgba(240,235,224,.65);line-height:1.55;}
+.events-cta{text-align:center;margin-top:clamp(32px,5vw,48px);}
+.events-cta p{font-size:.86rem;color:var(--txt2);margin-bottom:18px;}
 
 /* ════════════════════════════
    PROCESS
@@ -493,7 +470,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
 
 /* RESPONSIVE */
 @media(max-width:1100px){
-  .about-wrap,.book-wrap,.faq-wrap,.advisor-wrap,.tour-wrap{grid-template-columns:1fr;}
+  .about-wrap,.book-wrap,.faq-wrap,.tour-wrap{grid-template-columns:1fr;}
   .tour-rooms{flex-direction:row;flex-wrap:wrap;}
   .room-btn{flex:1;min-width:140px;}
   .ft-grid{grid-template-columns:1fr 1fr;}
@@ -540,7 +517,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
     <li><a href="#services">Services</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#virtual-tour">Tour</a></li>
-    <li><a href="#ai-advisor">Style AI</a></li>
+    <li><a href="#events">Weddings</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#booking">Book</a></li>
   </ul>
@@ -553,7 +530,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
 
 <div class="mob-menu" id="mobMenu">
   <a href="#about">About</a><a href="#services">Services</a><a href="#gallery">Gallery</a>
-  <a href="#virtual-tour">Studio Tour</a><a href="#ai-advisor">Style Advisor</a>
+  <a href="#virtual-tour">Studio Tour</a><a href="#events">Weddings & Events</a>
   <a href="#pricing">Pricing</a><a href="#booking">Book Now</a>
 </div>
 
@@ -568,7 +545,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
   <div class="hero-body">
     <div class="hero-badge"><span class="hero-badge-text">Premium Photography Studio · Hyderabad</span></div>
     <h1 class="hero-h1" id="heroH1">Capturing Your<em>Precious Moments</em></h1>
-    <p class="hero-p">Maternity · Newborn · Pre-Birthday · Customised Concept Photography<br>L.B. Nagar, Hyderabad — Call 7997765171</p>
+    <p class="hero-p">Maternity · Newborn · Pre-Birthday · Weddings & Mehndi · Customised Concept Photography<br>L.B. Nagar, Hyderabad — Call 7997765171</p>
     <div class="hero-btns">
       <a href="#booking" class="btn-rg"><i class="fas fa-camera"></i> Book a Shoot</a>
       <a href="#virtual-tour" class="btn-ghost"><i class="fas fa-vr-cardboard"></i> Virtual Tour</a>
@@ -593,12 +570,13 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
       <h2 class="sh1">Where Art Meets <em>Emotion</em></h2>
       <div class="div-rg"></div>
       <p class="sp">SFS Studios is Hyderabad's most loved premium photography studio, specialising in capturing life's most tender moments. From the ethereal glow of maternity to the first smile of a newborn — every frame is a story, every image a legacy.</p>
-      <p class="sp" style="margin-top:13px;">Located in L.B. Nagar, we offer both indoor and outdoor setups with fully bespoke, customised themes designed around your unique vision.</p>
+      <p class="sp" style="margin-top:13px;">Located in L.B. Nagar, we offer both indoor and outdoor setups with fully bespoke, customised themes designed around your unique vision. We also proudly cover weddings, mehndi, haldi, sangeet, engagements and every celebration in between.</p>
       <div class="about-chips">
         <span class="chip">Premium Lighting</span><span class="chip">Indoor &amp; Outdoor</span>
         <span class="chip">Custom Themes</span><span class="chip">Professional Editing</span>
         <span class="chip">High-Quality Albums</span><span class="chip">Express Delivery</span>
-        <span class="chip">Safe for Newborns</span><span class="chip">20+ Themes</span>
+        <span class="chip">Safe for Newborns</span><span class="chip">Wedding & Event Coverage</span>
+        <span class="chip">20+ Themes</span>
       </div>
     </div>
   </div>
@@ -609,7 +587,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
   <div class="svc-hd reveal">
     <div class="stag">What We Offer</div>
     <h2 class="sh1">Our <em>Services</em></h2>
-    <p class="sp">From the first moment of life to every joyful milestone — we capture it all with artistry and care.</p>
+    <p class="sp">From the first moment of life to your wedding day and every joyful milestone — we capture it all with artistry and care.</p>
   </div>
   <div class="svc-grid" id="svcGrid"></div>
 </section>
@@ -658,76 +636,17 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
   </div>
 </section>
 
-<!-- ★ FEATURE 2: AI STYLE ADVISOR -->
-<section id="ai-advisor">
-  <div class="advisor-hd reveal">
-    <div class="stag">AI-Powered</div>
-    <h2 class="sh1">Your Personal <em>Style Advisor</em></h2>
-    <p class="sp" style="margin:0 auto;">Tell us about your vision and let our AI create a personalised photography style guide just for you — powered by Claude.</p>
+<!-- ★ FEATURE 2: EVENTS WE COVER (Weddings, Mehndi & More) -->
+<section id="events">
+  <div class="events-hd reveal">
+    <div class="stag">Beyond the Studio</div>
+    <h2 class="sh1">Weddings, Mehndi &amp; <em>Every Celebration</em></h2>
+    <p class="sp" style="margin:0 auto;">From the henna and dhol of mehndi night to the vows at your wedding mandap — our team travels to capture every event in your celebration calendar.</p>
   </div>
-  <div class="advisor-wrap">
-    <div class="advisor-form reveal-l">
-      <div class="advisor-form-title">Describe Your Dream Shoot</div>
-      <div class="advisor-form-sub">Select your preferences and our AI will craft a bespoke photography concept for your family.</div>
-
-      <div class="af-group">
-        <label class="af-label">Shoot Type</label>
-        <div class="af-opts" id="afShootType">
-          <button class="af-opt" data-group="type" data-val="Maternity">Maternity</button>
-          <button class="af-opt" data-group="type" data-val="Newborn">Newborn</button>
-          <button class="af-opt" data-group="type" data-val="Pre-Birthday">Pre-Birthday</button>
-          <button class="af-opt" data-group="type" data-val="Family">Family</button>
-          <button class="af-opt" data-group="type" data-val="Concept">Concept</button>
-        </div>
-      </div>
-
-      <div class="af-group">
-        <label class="af-label">Mood & Aesthetic</label>
-        <div class="af-opts" id="afMood">
-          <button class="af-opt" data-group="mood" data-val="Dreamy & Soft">Dreamy &amp; Soft</button>
-          <button class="af-opt" data-group="mood" data-val="Bold & Vibrant">Bold &amp; Vibrant</button>
-          <button class="af-opt" data-group="mood" data-val="Earthy & Natural">Earthy &amp; Natural</button>
-          <button class="af-opt" data-group="mood" data-val="Elegant & Minimal">Elegant &amp; Minimal</button>
-          <button class="af-opt" data-group="mood" data-val="Whimsical">Whimsical</button>
-        </div>
-      </div>
-
-      <div class="af-group">
-        <label class="af-label">Setting Preference</label>
-        <div class="af-opts" id="afSetting">
-          <button class="af-opt" data-group="setting" data-val="Indoor Studio">Indoor Studio</button>
-          <button class="af-opt" data-group="setting" data-val="Outdoor Natural">Outdoor Natural</button>
-          <button class="af-opt" data-group="setting" data-val="Both">Both</button>
-        </div>
-      </div>
-
-      <div class="af-group">
-        <label class="af-label">Special Requests (optional)</label>
-        <textarea class="af-textarea" id="afNote" placeholder="E.g. twins, cultural theme, favourite colours..."></textarea>
-      </div>
-
-      <button class="btn-advisor" id="btnAdvisor" onclick="runAdvisor()">
-        <i class="fas fa-wand-magic-sparkles"></i> Generate My Style Guide
-      </button>
-    </div>
-
-    <div class="advisor-result reveal-r" id="advisorResult">
-      <div class="advisor-result-empty" id="advisorEmpty">
-        <i class="fas fa-camera-retro"></i>
-        <p>Your personalised style guide will appear here after you submit your preferences.</p>
-      </div>
-      <div class="result-loading" id="advisorLoading">
-        <div class="spin-dot"></div><div class="spin-dot"></div><div class="spin-dot"></div>
-        <span>Crafting your style guide…</span>
-      </div>
-      <div class="advisor-result-content" id="advisorContent">
-        <div class="result-badge" id="resType">Your Style Guide</div>
-        <div class="result-title" id="resTitle"></div>
-        <div class="result-body" id="resBody"></div>
-        <div class="result-tags" id="resTags"></div>
-        <a href="#booking" class="btn-rg" style="margin-top:12px;display:inline-flex;"><i class="fas fa-calendar-check"></i> Book This Style</a>
-      </div>
-    </div>
+  <div class="events-grid" id="eventsGrid"></div>
+  <div class="events-cta reveal">
+    <p>Planning a wedding, mehndi, haldi or reception? Let's talk about your dates and venue.</p>
+    <a href="#booking" class="btn-rg" style="display:inline-flex;"><i class="fas fa-calendar-check"></i> Enquire For Your Event</a>
   </div>
 </section>
 
@@ -746,7 +665,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
   <div class="pricing-hd reveal">
     <div class="stag">Investment</div>
     <h2 class="sh1">Transparent <em>Pricing</em></h2>
-    <p class="sp" style="margin:0 auto;">Premium memories at packages designed for every family. All include professional editing and digital delivery.</p>
+    <p class="sp" style="margin:0 auto;">Premium memories at packages designed for every family and every celebration. All include professional editing and digital delivery.</p>
   </div>
   <div class="pricing-grid" id="pricingGrid"></div>
 </section>
@@ -782,7 +701,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
     <div class="faq-cta-box reveal-r">
       <div class="faq-cta-icon"><i class="fas fa-camera-retro"></i></div>
       <h3>Ready to Create <em style="color:var(--rg);font-style:italic;">Magic?</em></h3>
-      <p>Still have questions? Our team is here to help you plan the perfect shoot experience for your family.</p>
+      <p>Still have questions? Our team is here to help you plan the perfect shoot experience for your family or event.</p>
       <a href="https://wa.me/917997765171" target="_blank" class="btn-rg" style="display:inline-flex;margin-bottom:12px;"><i class="fab fa-whatsapp"></i> Chat With Us</a><br>
       <a href="tel:7997765171" class="btn-ghost" style="display:inline-flex;margin-top:10px;"><i class="fas fa-phone"></i> Call 7997765171</a>
     </div>
@@ -842,6 +761,8 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
           <option>Pre-Birthday Shoot</option><option>Monthly Theme-Based Baby Shoots</option>
           <option>Premium Indoor Setup</option><option>Outdoor Setup</option>
           <option>Customised Concept Photography</option>
+          <option>Wedding Photography</option><option>Mehndi / Haldi / Sangeet Shoot</option>
+          <option>Engagement & Pre-Wedding Shoot</option>
         </select>
       </div>
       <div class="fg"><label>Message (optional)</label>
@@ -867,7 +788,7 @@ footer{background:var(--bg);border-top:1px solid var(--gb);padding:clamp(36px,6v
     </div>
     <div class="ft-col"><h4>Services</h4><ul>
       <li><a href="#services">Maternity Photography</a></li><li><a href="#services">Newborn Baby Shoot</a></li>
-      <li><a href="#services">Pre-Birthday Shoot</a></li><li><a href="#services">Monthly Themes</a></li>
+      <li><a href="#services">Pre-Birthday Shoot</a></li><li><a href="#events">Wedding & Mehndi Coverage</a></li>
       <li><a href="#services">Concept Photography</a></li>
     </ul></div>
     <div class="ft-col"><h4>Quick Links</h4><ul>
@@ -907,6 +828,8 @@ const SERVICES=[
   {ico:"fa-house",name:"Premium Indoor Setup",desc:"State-of-the-art studio with professional lighting, premium props and bespoke backdrops.",tag:"Studio"},
   {ico:"fa-tree",name:"Outdoor Setups",desc:"Natural light sessions at handpicked locations creating organic, timeless imagery.",tag:"Natural Light"},
   {ico:"fa-wand-magic-sparkles",name:"Concept Photography",desc:"Fully art-directed concept shoots tailored entirely to your imagination and vision.",tag:"Fully Custom"},
+  {ico:"fa-rings-wedding",name:"Wedding Photography",desc:"Candid and traditional coverage of your wedding day — from the mandap to the last dance.",tag:"Full-Day Coverage"},
+  {ico:"fa-hand-sparkles",name:"Mehndi & Haldi Shoots",desc:"Vibrant, colour-soaked coverage of mehndi, haldi and sangeet nights, full of candid joy.",tag:"Event Coverage"},
   {ico:"fa-book-open",name:"Premium Albums",desc:"High-quality printed albums and digital galleries with professional colour grading.",tag:"Print & Digital"}
 ];
 
@@ -917,12 +840,16 @@ const GALLERY=[
   {src:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=700&q=80",label:"Family Love",cat:"family"},
   {src:"https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?w=700&q=80",label:"Tiny Hands",cat:"newborn"},
   {src:"https://images.unsplash.com/photo-1591035897819-f4bdf739f446?w=700&q=80",label:"Milestone Shoot",cat:"milestone"},
-  {src:"https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=700&q=80",label:"Outdoor Bliss",cat:"outdoor"},
   {src:"https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=700&q=80",label:"Cake Smash",cat:"birthday"},
   {src:"https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&q=80",label:"Maternity Dreams",cat:"maternity"},
   {src:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80",label:"Sweet Newborn",cat:"newborn"},
   {src:"https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=700&q=80",label:"Family Portrait",cat:"family"},
-  {src:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=80",label:"Studio Portrait",cat:"studio"}
+  {src:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=80",label:"Studio Portrait",cat:"studio"},
+  {src:"https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80",label:"Bridal Mehndi",cat:"mehndi"},
+  {src:"https://images.unsplash.com/photo-1610818647551-eb3eb09be43e?w=700&q=80",label:"Henna Detail",cat:"mehndi"},
+  {src:"https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80",label:"Wedding Vows",cat:"wedding"},
+  {src:"https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80",label:"Bridal Portrait",cat:"wedding"},
+  {src:"https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=80",label:"Wedding Rituals",cat:"wedding"}
 ];
 
 const THEMES=[
@@ -971,6 +898,14 @@ const ROOMS=[
     hotspots:[{x:40,y:30,tip:"Balloon Arch Assembly"},{x:65,y:60,tip:"Cake Smash Station"}]
   },
   {
+    ico:"fa-hand-sparkles",name:"Mehndi & Wedding Set",sub:"Bridal & event ready",
+    img:"https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=85",
+    title:"The Mehndi & Wedding Set",
+    desc:"A richly decorated backdrop of drapes, florals, and traditional seating built for mehndi, haldi and bridal portraits.",
+    features:["Traditional Backdrop","Bridal Seating","Floral Jhoola","Event-Day Touch-Ups"],
+    hotspots:[{x:30,y:40,tip:"Bridal Floral Jhoola"},{x:68,y:50,tip:"Traditional Drape Backdrop"}]
+  },
+  {
     ico:"fa-tree",name:"Outdoor Garden",sub:"Natural light magic",
     img:"https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=900&q=85",
     title:"The Outdoor Garden",
@@ -978,6 +913,16 @@ const ROOMS=[
     features:["Golden Hour Spots","Rustic Props","Natural Backdrops","Pet Friendly"],
     hotspots:[{x:35,y:45,tip:"Golden Hour Position"},{x:70,y:35,tip:"Rustic Prop Styling"}]
   }
+];
+
+/* ★ EVENTS WE COVER DATA (Weddings, Mehndi & More) */
+const EVENTS=[
+  {ico:"fa-hand-sparkles",name:"Mehndi",desc:"Candid colour, henna detail shots and joyful dance-floor moments.",img:"https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80"},
+  {ico:"fa-droplet",name:"Haldi",desc:"Bright, turmeric-soaked candid coverage of every splash and smile.",img:"https://images.unsplash.com/photo-1610818647551-eb3eb09be43e?w=600&q=80"},
+  {ico:"fa-rings-wedding",name:"Wedding & Mandap",desc:"Full-day coverage of rituals, vows and the moments in between.",img:"https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80"},
+  {ico:"fa-champagne-glasses",name:"Sangeet & Reception",desc:"Stage lighting, performances and candid celebration coverage.",img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80"},
+  {ico:"fa-heart",name:"Engagement & Pre-Wedding",desc:"Romantic studio or outdoor sessions to celebrate your new chapter.",img:"https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80"},
+  {ico:"fa-people-group",name:"Family & Reunion Events",desc:"Group portraits and candid coverage for any family gathering.",img:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80"}
 ];
 
 const PROCESS=[
@@ -992,7 +937,8 @@ const PROCESS=[
 const PRICING=[
   {tier:"Starter",name:"Silver Package",price:"8,999",note:"Perfect for a single session",featured:false,features:["60-minute session","1 backdrop/theme","20 edited digital photos","Basic retouching","Online gallery delivery","Print-ready files"]},
   {tier:"Most Popular",name:"Gold Package",price:"14,999",note:"Our best-selling package",featured:true,features:["2-hour premium session","2 backdrops/themes","50 edited digital photos","Advanced retouching","Online gallery + USB","1 printed album (20 pages)","WhatsApp sneak peek"]},
-  {tier:"Premium",name:"Platinum Package",price:"24,999",note:"The ultimate experience",featured:false,features:["4-hour luxury session","Unlimited theme changes","100+ edited digital photos","Full professional retouching","Premium album (40 pages)","Canvas wall art print","Priority booking & support"]}
+  {tier:"Premium",name:"Platinum Package",price:"24,999",note:"The ultimate experience",featured:false,features:["4-hour luxury session","Unlimited theme changes","100+ edited digital photos","Full professional retouching","Premium album (40 pages)","Canvas wall art print","Priority booking & support"]},
+  {tier:"Events",name:"Wedding & Mehndi Package",price:"39,999",note:"Full event-day coverage",featured:false,features:["Full-day coverage (up to 8 hrs)","2 photographers + 1 candid","300+ edited digital photos","Mehndi/Haldi/Sangeet add-ons","Premium wedding album","Same-week sneak peek reel"]}
 ];
 
 const MILESTONES=[
@@ -1009,16 +955,18 @@ const TESTIMONIALS=[
   {text:"The pre-birthday theme shoot exceeded every expectation. Creative concepts, premium props, stunning edits. Our baby looked like absolute royalty!",name:"Kavya Reddy",role:"Birthday Shoot Client",stars:5},
   {text:"Professional, warm, and incredibly talented. They captured our family in a way we never imagined possible. The album they delivered is priceless.",name:"Suresh Family",role:"Family Portrait Client",stars:5},
   {text:"From first consultation to final album — flawless. The attention to detail is remarkable. Best photography studio in Hyderabad, no question.",name:"Meera & Rajan",role:"Concept Shoot Client",stars:5},
-  {text:"Booked the 12-month milestone package — worth every rupee. Each month tells a new chapter of our little one's journey. Pure magic!",name:"Lakshmi Nair",role:"Milestone Package Client",stars:5}
+  {text:"Booked the 12-month milestone package — worth every rupee. Each month tells a new chapter of our little one's journey. Pure magic!",name:"Lakshmi Nair",role:"Milestone Package Client",stars:5},
+  {text:"They covered our entire wedding weekend — mehndi, haldi, and the big day. Every candid moment was captured beautifully. So grateful we found this team!",name:"Sneha & Vikram",role:"Wedding & Mehndi Client",stars:5}
 ];
 
 const FAQS=[
-  {q:"How far in advance should I book?",a:"We recommend booking 2–4 weeks in advance, especially for weekends. For newborn shoots, book during your second trimester so we can schedule around your due date."},
+  {q:"How far in advance should I book?",a:"We recommend booking 2–4 weeks in advance, especially for weekends. For newborn shoots, book during your second trimester so we can schedule around your due date. For weddings and events, we suggest booking 2–3 months ahead."},
   {q:"Are the shoots safe for newborns?",a:"Absolutely. Baby safety is our top priority. Our photographers are trained in newborn posing, the studio is warm, and we always work at the baby's pace."},
   {q:"Can we choose our own theme?",a:"Yes! We love custom concepts. Share your ideas during consultation and our creative team will build a unique mood board around your vision."},
   {q:"What should we wear / bring?",a:"We guide you with a detailed style sheet before your shoot. Soft neutral tones photograph beautifully. For newborns, just bring milk, nappies, and your little one!"},
   {q:"How long until we receive our photos?",a:"Edited photos are delivered within 7–10 working days via a private online gallery. Rush delivery (2–3 days) is available on request."},
   {q:"Do you do outdoor shoots?",a:"Yes! We have partnered locations for outdoor sessions and also work at locations of your choosing. Best scheduled in the golden hour."},
+  {q:"Do you cover weddings, mehndi and other events?",a:"Yes! Alongside our studio sessions, we travel to cover weddings, mehndi, haldi, sangeet, engagements, receptions and family celebrations of any size."},
   {q:"What is your cancellation policy?",a:"We offer one free reschedule with 48 hours notice. We understand life with babies is unpredictable — please see full policy on booking confirmation."}
 ];
 
@@ -1168,91 +1116,15 @@ function switchRoom(i){
   document.querySelectorAll('.tour-slide').forEach((s,j)=>s.classList.toggle('active',j===i));
 }
 
-/* ★ FEATURE 2: AI STYLE ADVISOR */
-const advisorSelections={type:'',mood:'',setting:''};
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.af-opt').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const group=btn.dataset.group;
-      document.querySelectorAll(`.af-opt[data-group="${group}"]`).forEach(b=>b.classList.remove('sel'));
-      btn.classList.add('sel');
-      advisorSelections[group]=btn.dataset.val;
-    });
+/* ★ FEATURE 2: EVENTS WE COVER (Weddings, Mehndi & More) */
+function buildEvents(){
+  const g=document.getElementById('eventsGrid');
+  EVENTS.forEach(e=>{
+    const c=document.createElement('div');
+    c.className='event-card reveal-s';
+    c.innerHTML=`<img src="${e.img}" alt="${e.name}" loading="lazy"><div class="event-card-ov"><div class="event-card-ico"><i class="fas ${e.ico}"></i></div><div class="event-card-name">${e.name}</div><div class="event-card-desc">${e.desc}</div></div>`;
+    g.appendChild(c);
   });
-});
-
-async function runAdvisor(){
-  if(!advisorSelections.type&&!advisorSelections.mood){
-    showToast('Please select at least shoot type & mood');return;
-  }
-  const btn=document.getElementById('btnAdvisor');
-  btn.disabled=true;
-  document.getElementById('advisorEmpty').style.display='none';
-  document.getElementById('advisorContent').classList.remove('show');
-  document.getElementById('advisorLoading').classList.add('show');
-
-  const note=document.getElementById('afNote').value;
-  const prompt=`You are a professional photography studio style consultant for SFS Studios, a premium photography studio in Hyderabad.
-
-A client wants a personalised photography style guide. Their preferences:
-- Shoot Type: ${advisorSelections.type||'Not specified'}
-- Mood & Aesthetic: ${advisorSelections.mood||'Not specified'}
-- Setting: ${advisorSelections.setting||'Not specified'}
-- Special Notes: ${note||'None'}
-
-Respond ONLY with a JSON object (no markdown, no backticks) with exactly these fields:
-{
-  "concept_name": "A creative, evocative name for their shoot concept (4-6 words)",
-  "theme_title": "Short poetic theme title (3-4 words)",
-  "description": "A warm, inspiring 3-sentence description of exactly what their shoot will look and feel like. Be specific, visual, and evocative.",
-  "colour_palette": "3-4 specific colours that would define this shoot (e.g. Dusty Rose, Sage Green, Ivory)",
-  "prop_suggestions": ["3-4 specific prop suggestions"],
-  "outfit_tip": "One specific outfit recommendation (1 sentence)",
-  "best_time": "Best time of day for this shoot and why (1 sentence)"
-}`;
-
-  try{
-    const response=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens:1000,
-        messages:[{role:"user",content:prompt}]
-      })
-    });
-    const data=await response.json();
-    const text=data.content.map(i=>i.text||'').join('');
-    const clean=text.replace(/```json|```/g,'').trim();
-    const parsed=JSON.parse(clean);
-
-    document.getElementById('resType').textContent=`${advisorSelections.type} · ${advisorSelections.mood}`;
-    document.getElementById('resTitle').textContent=parsed.theme_title||parsed.concept_name;
-    document.getElementById('resBody').innerHTML=`
-      <p style="margin-bottom:12px;">${parsed.description}</p>
-      <p style="margin-bottom:6px;font-size:.78rem;color:var(--rg);letter-spacing:.1em;text-transform:uppercase;">Colour Palette</p>
-      <p style="margin-bottom:12px;">${parsed.colour_palette}</p>
-      <p style="margin-bottom:6px;font-size:.78rem;color:var(--rg);letter-spacing:.1em;text-transform:uppercase;">Outfit Tip</p>
-      <p style="margin-bottom:12px;">${parsed.outfit_tip}</p>
-      <p style="margin-bottom:6px;font-size:.78rem;color:var(--rg);letter-spacing:.1em;text-transform:uppercase;">Best Time</p>
-      <p>${parsed.best_time}</p>`;
-    const tags=document.getElementById('resTags');
-    tags.innerHTML='';
-    if(parsed.prop_suggestions){
-      parsed.prop_suggestions.forEach(t=>{
-        const span=document.createElement('span');
-        span.className='result-tag';span.textContent=t;tags.appendChild(span);
-      });
-    }
-    document.getElementById('advisorLoading').classList.remove('show');
-    document.getElementById('advisorContent').classList.add('show');
-  }catch(err){
-    document.getElementById('advisorLoading').classList.remove('show');
-    document.getElementById('advisorEmpty').style.display='flex';
-    document.getElementById('advisorEmpty').querySelector('p').textContent='Something went wrong. Please try again.';
-    console.error(err);
-  }
-  btn.disabled=false;
 }
 
 function buildProcess(){
@@ -1448,7 +1320,7 @@ window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('load
 document.addEventListener('DOMContentLoaded',()=>{
   buildHero();buildStats();buildServices();
   buildFilters();buildGallery();buildThemes();
-  buildVirtualTour();buildProcess();buildPricing();
+  buildVirtualTour();buildEvents();buildProcess();buildPricing();
   buildMilestones();buildTestimonials();buildFAQ();
   buildCalendar();buildSlots();
   lazyLoad();
