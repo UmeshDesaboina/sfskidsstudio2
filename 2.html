@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SFS Studios — Creating Memories That Last Forever</title>
+<meta name="description" content="SFS Studios – Hyderabad's premium photography studio. Maternity, Newborn, Pre-Birthday & Customised Concept Photography. Call 7997765171.">
+<meta property="og:title" content="SFS Studios – Premium Photography">
+<meta property="og:description" content="Creating Memories That Last Forever. Book your shoot today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════
+   ROOT VARIABLES & RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#c9a84c; --gold-l:#e8c97a; --gold-d:#8a6c2a;
+  --bg:#080604; --bg2:#110e08; --bg3:#1c1810; --bg4:#242018;
+  --glass:rgba(255,255,255,0.04); --glass2:rgba(255,255,255,0.08);
+  --gb:rgba(201,168,76,0.18); --gb2:rgba(201,168,76,0.35);
+  --txt:#f2e8d6; --txt2:rgba(242,232,214,0.6); --txt3:rgba(242,232,214,0.35);
+  --ff-d:'Cormorant Garamond',serif; --ff-i:'Italiana',serif;
+  --ff-b:'Outfit',sans-serif;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --t:.45s; --r:14px; --r2:24px;
+  --sh:0 30px 80px rgba(0,0,0,0.6);
+  --glow:0 0 40px rgba(201,168,76,0.25);
+}
+[data-theme="light"]{
+  --bg:#f8f2e8; --bg2:#f0e9dc; --bg3:#e8dec8; --bg4:#dfd3ba;
+  --glass:rgba(0,0,0,0.03); --glass2:rgba(0,0,0,0.06);
+  --gb:rgba(139,108,42,0.15); --gb2:rgba(139,108,42,0.3);
+  --txt:#1a1208; --txt2:rgba(26,18,8,0.6); --txt3:rgba(26,18,8,0.3);
+}
+html{scroll-behavior:smooth; font-size:16px;}
+body{font-family:var(--ff-b);background:var(--bg);color:var(--txt);overflow-x:hidden;}
+*{cursor:pointer!important;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{border:none;background:none;font-family:var(--ff-b);}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px;}
+
+/* ═══════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════ */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:28px;
+  transition:opacity .9s var(--ease),visibility .9s;
+}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none;}
+.ld-logo{
+  font-family:var(--ff-d);font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:300;letter-spacing:.3em;color:var(--gold);
+  opacity:0;animation:ldFade .8s .3s forwards;
+}
+@keyframes ldFade{to{opacity:1;}}
+.ld-ring{
+  width:64px;height:64px;border-radius:50%;
+  border:1.5px solid var(--gb);
+  border-top-color:var(--gold);
+  animation:ldSpin 1s linear infinite;
+}
+@keyframes ldSpin{to{transform:rotate(360deg);}}
+.ld-bar{width:160px;height:1px;background:var(--gb);position:relative;overflow:hidden;}
+.ld-bar::after{
+  content:'';position:absolute;inset:0;background:var(--gold);
+  transform:translateX(-100%);animation:ldBar 2s var(--ease) .5s forwards;
+}
+@keyframes ldBar{to{transform:translateX(0);}}
+.ld-sub{font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:var(--txt2);
+  opacity:0;animation:ldFade .8s .8s forwards;}
+
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR DOT (pointer only, no color trail)
+═══════════════════════════════════════════ */
+#cursor-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);
+  position:fixed;pointer-events:none;z-index:8000;
+  transform:translate(-50%,-50%);
+  transition:transform .1s,opacity .3s;
+}
+#cursor-ring{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.5);
+  position:fixed;pointer-events:none;z-index:7999;
+  transform:translate(-50%,-50%);
+  transition:transform .18s var(--ease),width .3s,height .3s,border-color .3s;
+}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none;}}
+
+/* ═══════════════════════════════════════════
+   NOISE OVERLAY
+═══════════════════════════════════════════ */
+.noise{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px;
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:22px 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all var(--t) var(--ease);
+}
+#nav.stuck{
+  background:rgba(8,6,4,.9);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  padding:14px 5%;
+  border-bottom:1px solid var(--gb);
+}
+[data-theme="light"] #nav.stuck{background:rgba(248,242,232,.92);}
+.nav-brand{display:flex;align-items:center;gap:13px;}
+.nav-logobox{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(201,168,76,.08);
+  overflow:hidden;font-family:var(--ff-d);font-size:1rem;
+  color:var(--gold);font-style:italic;transition:all var(--t);
+}
+.nav-logobox img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.nav-wordmark{
+  font-family:var(--ff-d);font-size:1.25rem;font-weight:300;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--txt);
+}
+.nav-wordmark b{color:var(--gold);font-weight:300;}
+.nav-links{display:flex;align-items:center;gap:34px;list-style:none;}
+.nav-links a{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--txt2);position:relative;transition:color var(--t);
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-5px;left:0;right:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:right;
+  transition:transform var(--t);
+}
+.nav-links a:hover{color:var(--gold);}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left;}
+.nav-actions{display:flex;align-items:center;gap:10px;}
+.icon-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--gb);background:var(--glass);
+  color:var(--gold);font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--t);backdrop-filter:blur(8px);
+}
+.icon-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.12);}
+.nav-cta{
+  padding:9px 22px;border:1px solid var(--gold);border-radius:40px;
+  color:var(--gold);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;transition:all var(--t);
+  background:rgba(201,168,76,.06);backdrop-filter:blur(8px);
+}
+.nav-cta:hover{background:var(--gold);color:var(--bg);}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;padding:6px;
+}
+.hamburger span{
+  width:22px;height:1.5px;background:var(--gold);
+  transition:all var(--t);display:block;
+}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+
+/* Mobile overlay */
+.mob-menu{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(8,6,4,.97);backdrop-filter:blur(24px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  opacity:0;visibility:hidden;transition:all .4s var(--ease);
+}
+.mob-menu.open{opacity:1;visibility:visible;}
+.mob-menu a{
+  font-family:var(--ff-d);font-size:2.4rem;font-weight:300;
+  letter-spacing:.08em;color:var(--txt);
+  transition:color var(--t);
+}
+.mob-menu a:hover{color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero{position:relative;height:100svh;min-height:580px;overflow:hidden;}
+.hero-track{position:absolute;inset:0;display:flex;}
+.hero-slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity 1.6s var(--ease);
+}
+.hero-slide.on{opacity:1;}
+.hero-slide img{width:100%;height:100%;object-fit:cover;}
+.hero-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(8,6,4,.85) 30%,rgba(8,6,4,.2) 80%,rgba(8,6,4,.5) 100%);
+}
+.hero-grad2{
+  position:absolute;bottom:0;left:0;right:0;height:280px;
+  background:linear-gradient(to top,var(--bg),transparent);
+}
+.hero-body{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 7% 100px;max-width:900px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.hero-badge::before{content:'';width:36px;height:1px;background:var(--gold);}
+.hero-h1{
+  font-family:var(--ff-d);
+  font-size:clamp(3rem,7.5vw,7rem);
+  font-weight:300;line-height:1.02;
+  margin-bottom:6px;overflow:hidden;
+}
+.hero-h1 em{font-style:italic;color:var(--gold);display:block;}
+.hero-p{
+  font-size:clamp(.9rem,1.8vw,1.15rem);
+  color:rgba(242,232,214,.75);
+  max-width:500px;line-height:1.65;
+  margin-bottom:38px;font-weight:300;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 32px;background:var(--gold);color:var(--bg);
+  border-radius:40px;font-size:.75rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:500;
+  transition:all var(--t);
+}
+.btn-gold:hover{background:var(--gold-l);transform:translateY(-3px);box-shadow:var(--glow);}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:13px 32px;border:1px solid rgba(242,232,214,.3);
+  color:var(--txt);border-radius:40px;font-size:.75rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  transition:all var(--t);background:rgba(255,255,255,.04);
+  backdrop-filter:blur(8px);
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-dots{
+  position:absolute;bottom:38px;left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;
+}
+.hdot{width:26px;height:2px;border-radius:2px;background:rgba(255,255,255,.25);transition:all .4s;}
+.hdot.on{background:var(--gold);width:48px;}
+.hero-scroll{
+  position:absolute;bottom:38px;right:6%;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--txt2);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
+}
+.scroll-bar{
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  animation:scBar 2s ease infinite;
+}
+@keyframes scBar{0%,100%{transform:scaleY(.3);transform-origin:top;}50%{transform:scaleY(1);}}
+
+/* Floating particles in hero */
+.ptcl{
+  position:absolute;border-radius:50%;
+  background:var(--gold);pointer-events:none;
+  animation:ptclFloat linear infinite;
+}
+@keyframes ptclFloat{
+  0%{opacity:0;transform:translateY(100vh);}
+  10%{opacity:.5;}90%{opacity:.1;}
+  100%{opacity:0;transform:translateY(-20px);}
+}
+
+/* ═══════════════════════════════════════════
+   STATS MARQUEE STRIP
+═══════════════════════════════════════════ */
+.stats-band{
+  background:var(--bg2);
+  border-top:1px solid var(--gb);border-bottom:1px solid var(--gb);
+  padding:28px 0;overflow:hidden;
+}
+.stats-track{
+  display:flex;gap:0;width:max-content;
+  animation:stScroll 25s linear infinite;
+}
+.stats-track:hover{animation-play-state:paused;}
+@keyframes stScroll{to{transform:translateX(-50%);}}
+.stat-chip{
+  display:flex;align-items:center;gap:16px;
+  padding:0 48px;border-right:1px solid var(--gb);
+  white-space:nowrap;
+}
+.stat-num{
+  font-family:var(--ff-d);font-size:2.4rem;font-weight:300;
+  color:var(--gold);line-height:1;
+}
+.stat-lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txt2);}
+.stat-ico{font-size:1.1rem;color:var(--gold-d);}
+
+/* ═══════════════════════════════════════════
+   SHARED SECTION STYLES
+═══════════════════════════════════════════ */
+section{padding:clamp(60px,8vw,110px) clamp(4%,6vw,7%);}
+.stag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.stag::before{content:'';width:28px;height:1px;background:var(--gold);}
+.sh1{
+  font-family:var(--ff-d);
+  font-size:clamp(2rem,5vw,3.8rem);
+  font-weight:300;line-height:1.08;margin-bottom:18px;
+}
+.sh1 em{font-style:italic;color:var(--gold);}
+.sp{color:var(--txt2);font-size:.95rem;line-height:1.72;max-width:560px;}
+.div-gold{width:50px;height:1px;background:var(--gold);margin:22px 0;}
+.reveal{opacity:0;transform:translateY(40px);}
+.reveal-l{opacity:0;transform:translateX(-50px);}
+.reveal-r{opacity:0;transform:translateX(50px);}
+.reveal-s{opacity:0;transform:scale(.93);}
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+#about{background:var(--bg);}
+.about-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,90px);align-items:center;
+  max-width:1300px;margin:0 auto;
+}
+.about-vis{position:relative;height:clamp(400px,55vw,640px);}
+.ab-img-a{
+  position:absolute;right:0;top:0;
+  width:70%;height:78%;
+  object-fit:cover;border-radius:var(--r2);
+  box-shadow:var(--sh);
+}
+.ab-img-b{
+  position:absolute;left:0;bottom:0;
+  width:46%;height:52%;
+  object-fit:cover;border-radius:var(--r2);
+  box-shadow:var(--sh);
+  border:5px solid var(--bg);
+}
+.ab-badge{
+  position:absolute;right:6%;bottom:30%;
+  width:88px;height:88px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--bg);font-family:var(--ff-d);
+  box-shadow:0 12px 36px rgba(201,168,76,.5);
+  animation:floatY 4s ease-in-out infinite;
+  text-align:center;line-height:1.1;
+}
+.ab-badge b{font-size:1.6rem;font-weight:600;}
+.ab-badge span{font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.about-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.chip{
+  padding:7px 16px;border:1px solid var(--gb);border-radius:40px;
+  font-size:.72rem;letter-spacing:.1em;color:var(--txt2);
+  transition:all var(--t);
+}
+.chip:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+#services{background:var(--bg2);}
+.svc-hd{text-align:center;margin-bottom:clamp(36px,5vw,60px);}
+.svc-hd .stag{justify-content:center;}
+.svc-hd .sh1{text-align:center;}
+.svc-hd .sp{margin:0 auto;}
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  gap:18px;max-width:1300px;margin:0 auto;
+}
+.svc-card{
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:var(--r2);padding:36px 28px;
+  position:relative;overflow:hidden;
+  transition:all var(--t);backdrop-filter:blur(12px);
+}
+.svc-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,.07),transparent);
+  opacity:0;transition:opacity var(--t);
+}
+.svc-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--gb2);
+  box-shadow:var(--sh),0 0 0 1px rgba(201,168,76,.15);
+}
+.svc-card:hover::before{opacity:1;}
+.svc-n{
+  position:absolute;right:20px;top:16px;
+  font-family:var(--ff-d);font-size:3.2rem;font-weight:300;
+  color:rgba(201,168,76,.07);line-height:1;
+  transition:all var(--t);
+}
+.svc-card:hover .svc-n{color:rgba(201,168,76,.15);}
+.svc-ico{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1.25rem;
+  margin-bottom:22px;transition:all var(--t);
+}
+.svc-card:hover .svc-ico{background:var(--gold);border-color:var(--gold);color:var(--bg);}
+.svc-name{
+  font-family:var(--ff-d);font-size:1.3rem;
+  font-weight:400;margin-bottom:10px;
+}
+.svc-desc{color:var(--txt2);font-size:.85rem;line-height:1.65;}
+.svc-tag{
+  display:inline-block;margin-top:14px;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);border-bottom:1px solid rgba(201,168,76,.3);
+  padding-bottom:2px;
+}
+
+/* ═══════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════ */
+#gallery{background:var(--bg);}
+.gal-hd{
+  display:flex;justify-content:space-between;
+  align-items:flex-end;margin-bottom:clamp(28px,4vw,50px);
+  flex-wrap:wrap;gap:20px;
+}
+.gal-filters{display:flex;gap:8px;flex-wrap:wrap;}
+.fbtn{
+  padding:7px 18px;border:1px solid var(--gb);
+  border-radius:40px;color:var(--txt2);
+  font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  transition:all var(--t);
+}
+.fbtn:hover,.fbtn.on{
+  border-color:var(--gold);color:var(--gold);
+  background:rgba(201,168,76,.08);
+}
+.gal-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.gal-item{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  border-radius:var(--r);background:var(--bg3);
+  transition:all var(--t);
+}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s var(--ease);
+}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,6,4,.85) 0%,transparent 55%);
+  opacity:0;transition:opacity var(--t);
+  display:flex;align-items:flex-end;padding:18px;
+}
+.gal-item:hover .gal-ov{opacity:1;}
+.gal-lbl{
+  font-family:var(--ff-d);font-size:.95rem;
+  color:#fff;font-weight:300;letter-spacing:.06em;
+}
+.gal-zoom{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) scale(.5);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(201,168,76,.9);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--bg);font-size:.95rem;
+  opacity:0;transition:all var(--t);
+}
+.gal-item:hover .gal-zoom{opacity:1;transform:translate(-50%,-50%) scale(1);}
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════ */
+#lb{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,.96);
+  display:none;align-items:center;justify-content:center;
+  animation:lbIn .3s ease;
+}
+#lb.open{display:flex;}
+@keyframes lbIn{from{opacity:0;}to{opacity:1;}}
+#lb-img{
+  max-width:88vw;max-height:82vh;
+  object-fit:contain;border-radius:8px;
+  box-shadow:0 40px 100px rgba(0,0,0,.8);
+  transition:opacity .25s;
+}
+.lb-x{
+  position:fixed;top:20px;right:22px;
+  width:46px;height:46px;border-radius:50%;
+  background:rgba(201,168,76,.12);border:1px solid var(--gold);
+  color:var(--gold);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--t);z-index:10;
+}
+.lb-x:hover{background:var(--gold);color:var(--bg);}
+.lb-arr{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:50px;height:50px;border-radius:50%;
+  background:rgba(201,168,76,.1);border:1px solid var(--gb);
+  color:var(--gold);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--t);backdrop-filter:blur(8px);
+}
+.lb-arr:hover{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+#lb-prev{left:18px;}#lb-next{right:18px;}
+.lb-ctr{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  font-size:.7rem;letter-spacing:.2em;color:rgba(255,255,255,.5);
+}
+.lb-thumb-strip{
+  position:fixed;bottom:50px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;
+}
+.lb-th{
+  width:44px;height:32px;border-radius:5px;overflow:hidden;
+  border:1.5px solid transparent;transition:all .3s;opacity:.5;
+}
+.lb-th.on{border-color:var(--gold);opacity:1;}
+.lb-th img{width:100%;height:100%;object-fit:cover;}
+
+/* ═══════════════════════════════════════════
+   THEME MARQUEE
+═══════════════════════════════════════════ */
+#themes{background:var(--bg3);overflow:hidden;}
+.themes-hd{text-align:center;margin-bottom:40px;}
+.themes-hd .stag{justify-content:center;}
+.marquee-wrap{
+  overflow:hidden;
+  margin:0 calc(-1 * clamp(4%,6vw,7%));
+}
+.marquee-row{display:flex;width:max-content;}
+.marquee-row.row1{animation:mq 30s linear infinite;}
+.marquee-row.row2{animation:mq 25s linear infinite reverse;margin-top:12px;}
+@keyframes mq{to{transform:translateX(-50%);}}
+.marquee-row:hover{animation-play-state:paused;}
+.theme-card{
+  flex-shrink:0;width:clamp(180px,22vw,260px);height:clamp(220px,28vw,320px);
+  border-radius:var(--r2);overflow:hidden;margin-right:12px;
+  position:relative;border:1px solid var(--gb);
+}
+.theme-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.theme-card:hover img{transform:scale(1.08);}
+.theme-card-lbl{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 16px;
+  background:linear-gradient(to top,rgba(8,6,4,.9),transparent);
+  font-family:var(--ff-d);font-size:1rem;color:#fff;font-weight:300;
+}
+
+/* ═══════════════════════════════════════════
+   PROCESS SECTION  (NEW)
+═══════════════════════════════════════════ */
+#process{background:var(--bg2);}
+.proc-wrap{
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:clamp(40px,6vw,80px);align-items:start;
+  max-width:1300px;margin:0 auto;
+}
+.proc-steps{display:flex;flex-direction:column;gap:0;}
+.proc-step{
+  display:flex;gap:22px;padding:28px 0;
+  border-bottom:1px solid var(--gb);
+  position:relative;transition:all var(--t);
+}
+.proc-step:last-child{border-bottom:none;}
+.proc-step:hover .proc-step-ico{
+  background:var(--gold);color:var(--bg);border-color:var(--gold);
+}
+.proc-step-num{
+  font-family:var(--ff-d);font-size:1.8rem;
+  color:rgba(201,168,76,.25);font-weight:300;
+  line-height:1;min-width:36px;padding-top:4px;
+}
+.proc-step-ico{
+  width:44px;height:44px;min-width:44px;border-radius:50%;
+  border:1px solid var(--gb);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:1rem;
+  transition:all var(--t);
+}
+.proc-step-txt h4{
+  font-family:var(--ff-d);font-size:1.15rem;
+  font-weight:400;margin-bottom:6px;
+}
+.proc-step-txt p{font-size:.82rem;color:var(--txt2);line-height:1.6;}
+.proc-img-stack{
+  position:sticky;top:100px;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  gap:12px;height:clamp(380px,50vw,540px);
+}
+.proc-img-stack img{
+  width:100%;height:100%;object-fit:cover;border-radius:var(--r);
+  transition:transform .6s var(--ease);
+}
+.proc-img-stack img:first-child{grid-column:1 / span 2;height:60%;}
+.proc-img-stack img:hover{transform:scale(1.03);}
+
+/* ═══════════════════════════════════════════
+   PRICING (NEW)
+═══════════════════════════════════════════ */
+#pricing{background:var(--bg);}
+.pricing-hd{text-align:center;margin-bottom:clamp(32px,5vw,56px);}
+.pricing-hd .stag{justify-content:center;}
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));
+  gap:20px;max-width:1200px;margin:0 auto;
+}
+.price-card{
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:var(--r2);padding:36px 30px;
+  position:relative;overflow:hidden;transition:all var(--t);
+  backdrop-filter:blur(12px);
+}
+.price-card.featured{
+  border-color:var(--gold);
+  background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(201,168,76,.03));
+}
+.price-card.featured::before{
+  content:'Best Value';
+  position:absolute;top:16px;right:-22px;
+  background:var(--gold);color:var(--bg);
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:4px 30px;transform:rotate(45deg);
+  width:110px;text-align:center;
+}
+.price-card:hover{transform:translateY(-6px);box-shadow:var(--sh);}
+.price-tier{
+  font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.price-name{
+  font-family:var(--ff-d);font-size:1.6rem;
+  font-weight:400;margin-bottom:18px;
+}
+.price-amt{
+  font-family:var(--ff-d);font-size:2.8rem;
+  font-weight:300;color:var(--gold);
+  line-height:1;margin-bottom:4px;
+}
+.price-amt sup{font-size:1.2rem;vertical-align:top;margin-top:8px;display:inline-block;}
+.price-note{font-size:.72rem;color:var(--txt2);margin-bottom:24px;}
+.price-divider{height:1px;background:var(--gb);margin:20px 0;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.price-features li{
+  display:flex;align-items:center;gap:10px;
+  font-size:.82rem;color:var(--txt2);
+}
+.price-features li i{color:var(--gold);font-size:.75rem;width:14px;}
+.price-btn{
+  width:100%;padding:12px;border-radius:40px;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  transition:all var(--t);font-family:var(--ff-b);
+}
+.price-btn.gold{background:var(--gold);color:var(--bg);}
+.price-btn.gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:var(--glow);}
+.price-btn.outline{border:1px solid var(--gb);color:var(--txt2);}
+.price-btn.outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   TIMELINE — MILESTONES (NEW)
+═══════════════════════════════════════════ */
+#milestones{background:var(--bg3);overflow:hidden;}
+.timeline-hd{text-align:center;margin-bottom:clamp(32px,5vw,56px);}
+.timeline-hd .stag{justify-content:center;}
+.timeline{
+  position:relative;max-width:900px;margin:0 auto;
+  padding-left:40px;
+}
+.timeline::before{
+  content:'';position:absolute;left:20px;top:0;bottom:0;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+}
+.tl-item{
+  position:relative;margin-bottom:44px;
+  padding-left:44px;
+}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-20px;top:6px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--bg3);border:1.5px solid var(--gold);
+  transition:all .4s;
+}
+.tl-item:hover .tl-dot{background:var(--gold);box-shadow:var(--glow);}
+.tl-age{
+  font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;
+}
+.tl-title{
+  font-family:var(--ff-d);font-size:1.4rem;
+  font-weight:400;margin-bottom:8px;
+}
+.tl-desc{font-size:.85rem;color:var(--txt2);line-height:1.65;max-width:580px;}
+.tl-img{
+  width:100%;max-width:420px;height:200px;
+  object-fit:cover;border-radius:var(--r);
+  margin-top:14px;transition:transform .6s var(--ease);
+}
+.tl-item:hover .tl-img{transform:scale(1.02);}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+#testimonials{background:var(--bg2);}
+.testi-hd{text-align:center;margin-bottom:clamp(32px,5vw,56px);}
+.testi-hd .stag{justify-content:center;}
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+  gap:20px;max-width:1300px;margin:0 auto;
+}
+.testi-card{
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:var(--r2);padding:30px;
+  transition:all var(--t);
+}
+.testi-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px);}
+.testi-q{
+  font-family:var(--ff-d);font-size:3.2rem;
+  color:rgba(201,168,76,.12);line-height:.7;margin-bottom:14px;
+}
+.testi-stars{color:var(--gold);font-size:.78rem;letter-spacing:3px;margin-bottom:14px;}
+.testi-txt{
+  font-size:.88rem;line-height:1.7;color:var(--txt2);
+  font-style:italic;margin-bottom:22px;
+}
+.testi-auth{display:flex;align-items:center;gap:12px;}
+.testi-av{
+  width:40px;height:40px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--gold-d);
+  background:var(--bg3);display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff-d);font-size:1rem;color:var(--gold);
+  min-width:40px;
+}
+.testi-name strong{display:block;font-size:.85rem;margin-bottom:2px;}
+.testi-name span{font-size:.7rem;color:var(--txt2);}
+
+/* ═══════════════════════════════════════════
+   FAQ  (NEW)
+═══════════════════════════════════════════ */
+#faq{background:var(--bg);}
+.faq-wrap{
+  display:grid;grid-template-columns:1fr 1.4fr;
+  gap:clamp(40px,6vw,80px);align-items:start;
+  max-width:1200px;margin:0 auto;
+}
+.faq-list{display:flex;flex-direction:column;gap:8px;}
+.faq-item{
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:var(--r);overflow:hidden;transition:border-color var(--t);
+}
+.faq-item.open{border-color:rgba(201,168,76,.4);}
+.faq-q{
+  width:100%;padding:18px 22px;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;text-align:left;
+  font-size:.9rem;font-weight:500;
+  color:var(--txt);transition:color var(--t);
+  font-family:var(--ff-b);
+}
+.faq-q:hover,.faq-item.open .faq-q{color:var(--gold);}
+.faq-icon{
+  width:28px;height:28px;min-width:28px;border-radius:50%;
+  border:1px solid var(--gb);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:.7rem;
+  transition:all var(--t);
+}
+.faq-item.open .faq-icon{background:var(--gold);color:var(--bg);border-color:var(--gold);transform:rotate(45deg);}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s var(--ease),padding .3s;
+  padding:0 22px;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 18px;}
+.faq-a p{font-size:.85rem;color:var(--txt2);line-height:1.7;}
+.faq-cta-box{
+  background:var(--glass);border:1px solid var(--gb);
+  border-radius:var(--r2);padding:40px 32px;
+  text-align:center;
+  position:sticky;top:90px;
+}
+.faq-cta-icon{
+  font-size:2.5rem;color:var(--gold);margin-bottom:16px;
+}
+.faq-cta-box h3{
+  font-family:var(--ff-d);font-size:1.7rem;
+  font-weight:300;margin-bottom:12px;
+}
+.faq-cta-box p{font-size:.85rem;color:var(--txt2);margin-bottom:24px;line-height:1.6;}
+
+/* ═══════════════════════════════════════════
+   BOOKING
+═══════════════════════════════════════════ */
+#booking{
+  background:var(--bg2);position:relative;overflow:hidden;
+}
+#booking::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,.06),transparent 70%);
+  pointer-events:none;
+}
+.book-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,80px);align-items:start;
+  max-width:1200px;margin:0 auto;
+}
+.book-info .contact-items{margin-top:28px;display:flex;flex-direction:column;gap:14px;}
+.ci{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;background:var(--glass);
+  border:1px solid var(--gb);border-radius:var(--r);
+  transition:border-color var(--t);backdrop-filter:blur(8px);
+}
+.ci:hover{border-color:var(--gold);}
+.ci-ico{
+  width:40px;height:40px;min-width:40px;border-radius:50%;
+  background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:.9rem;
+}
+.ci-lbl strong{display:block;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.ci-lbl span{font-size:.82rem;color:var(--txt2);}
+.book-form{
+  background:var(--glass2);border:1px solid var(--gb);
+  border-radius:var(--r2);padding:clamp(24px,4vw,40px);
+  backdrop-filter:blur(16px);
+}
+.bftitle{font-family:var(--ff-d);font-size:1.7rem;font-weight:300;margin-bottom:24px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:14px;}
+.fg label{
+  display:block;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:7px;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:11px 14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--gb);border-radius:10px;
+  color:var(--txt);font-family:var(--ff-b);font-size:.88rem;
+  transition:all var(--t);outline:none;-webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--gold);background:rgba(201,168,76,.05);
+}
+.fg select option{background:var(--bg2);color:var(--txt);}
+.fg textarea{resize:vertical;min-height:88px;}
+.btn-book{
+  width:100%;padding:14px;background:var(--gold);color:var(--bg);
+  border-radius:40px;font-family:var(--ff-b);font-weight:500;
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;
+  transition:all var(--t);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.btn-book:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:var(--glow);}
+.wa-btn{
+  margin-top:10px;width:100%;padding:12px;
+  background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.3);
+  color:#25d366;border-radius:40px;font-size:.75rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all var(--t);
+}
+.wa-btn:hover{background:rgba(37,211,102,.18);border-color:#25d366;}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  background:var(--bg);border-top:1px solid var(--gb);
+  padding:clamp(40px,6vw,70px) clamp(4%,6vw,7%) 28px;
+}
+.ft-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:clamp(24px,4vw,52px);margin-bottom:44px;
+}
+.ft-brand .ft-logo{
+  font-family:var(--ff-d);font-size:1.7rem;font-weight:300;
+  letter-spacing:.1em;color:var(--txt);margin-bottom:14px;
+}
+.ft-brand .ft-logo b{color:var(--gold);font-weight:300;}
+.ft-brand p{font-size:.82rem;color:var(--txt2);line-height:1.7;max-width:270px;margin-bottom:20px;}
+.ft-socials{display:flex;gap:8px;}
+.soc{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--gb);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--txt2);font-size:.8rem;
+  transition:all var(--t);
+}
+.soc:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);}
+.ft-col h4{
+  font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-col ul li a{font-size:.82rem;color:var(--txt2);transition:color var(--t);}
+.ft-col ul li a:hover{color:var(--gold);}
+.ft-bottom{
+  border-top:1px solid var(--gb);padding-top:22px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.ft-copy{font-size:.72rem;color:var(--txt2);}
+.ft-tagline{
+  font-family:var(--ff-d);font-style:italic;
+  font-size:.85rem;color:var(--gold);
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING BUTTONS
+═══════════════════════════════════════════ */
+.float-wa{
+  position:fixed;bottom:88px;right:24px;z-index:500;
+  width:52px;height:52px;border-radius:50%;
+  background:#25d366;color:#fff;font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);
+  transition:all var(--t);
+  animation:waPulse 3s ease infinite;
+}
+.float-wa:hover{transform:scale(1.12);box-shadow:0 12px 32px rgba(37,211,102,.6);}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.4);}
+  50%{box-shadow:0 8px 32px rgba(37,211,102,.7),0 0 0 10px rgba(37,211,102,.1);}
+}
+#btt{
+  position:fixed;bottom:24px;right:24px;z-index:500;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--gold);color:var(--bg);font-size:.88rem;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:all var(--t);
+  box-shadow:0 6px 20px rgba(201,168,76,.4);
+}
+#btt.show{opacity:1;visibility:visible;}
+#btt:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(201,168,76,.5);}
+
+/* ═══════════════════════════════════════════
+   NOTICE TOAST
+═══════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--bg3);border:1px solid var(--gold);
+  border-radius:40px;padding:12px 24px;
+  font-size:.8rem;color:var(--txt);
+  z-index:4000;opacity:0;visibility:hidden;transition:all .4s var(--ease);
+  white-space:nowrap;
+  display:flex;align-items:center;gap:10px;
+}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+.toast i{color:var(--gold);}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .about-wrap,.proc-wrap,.book-wrap,.faq-wrap{grid-template-columns:1fr;}
+  .about-vis{height:clamp(320px,50vw,480px);}
+  .proc-img-stack{position:static;height:240px;}
+  .proc-img-stack img:first-child{height:100%;}
+  .proc-img-stack img:nth-child(2),.proc-img-stack img:nth-child(3){display:none;}
+  .ft-grid{grid-template-columns:1fr 1fr;}
+  .gal-grid{grid-template-columns:repeat(2,1fr);}
+  .faq-cta-box{position:static;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .hero-body{padding:0 5% 90px;}
+  .hero-h1{font-size:clamp(2.4rem,9vw,4rem);}
+  .gal-grid{grid-template-columns:repeat(2,1fr);}
+  .f-row{grid-template-columns:1fr;}
+  .ft-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .timeline{padding-left:28px;}
+  .timeline::before{left:10px;}
+  .tl-item{padding-left:32px;}
+  .tl-dot{left:-12px;}
+}
+@media(max-width:480px){
+  .gal-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;align-items:flex-start;}
+  .svc-grid{grid-template-columns:1fr;}
+  .about-vis{height:300px;}
+  .lb-arr{display:none;}
+  .lb-thumb-strip{display:none;}
+  .lb-ctr{bottom:16px;}
+  #lb-img{max-width:96vw;max-height:75vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- NOISE -->
+<div class="noise"></div>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">SFS Studios</div>
+  <div class="ld-ring"></div>
+  <div class="ld-bar"></div>
+  <div class="ld-sub">Creating Memories That Last Forever</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toast-msg">Booking sent via WhatsApp!</span></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <div class="nav-logobox" id="logobox">SFS</div>
+    <div class="nav-wordmark"><b>SFS</b> Studios</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="icon-btn" id="themeBtn" title="Toggle theme"><i class="fas fa-moon" id="themeIco"></i></button>
+    <a href="tel:7997765171" class="nav-cta"><i class="fas fa-phone"></i> Call Us</a>
+  </div>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#testimonials">Reviews</a>
+  <a href="#faq">FAQ</a>
+  <a href="#booking">Book Now</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="hero-track" id="heroTrack"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-grad2"></div>
+  <div class="hero-body">
+    <div class="hero-badge">Premium Photography Studio</div>
+    <h1 class="hero-h1" id="heroH1">
+      Capturing Your<em>Precious Moments</em>
+    </h1>
+    <p class="hero-p">Maternity · Newborn · Pre-Birthday · Customised Concept Photography<br>L.B. Nagar, Hyderabad — Call 7997765171</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-gold"><i class="fas fa-camera"></i> Book a Shoot</a>
+      <a href="#gallery" class="btn-ghost"><i class="fas fa-images"></i> View Gallery</a>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-scroll"><div class="scroll-bar"></div><span>Scroll</span></div>
+</section>
+
+<!-- STATS MARQUEE -->
+<div class="stats-band"><div class="stats-track" id="statsTrack"></div></div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-vis reveal-l">
+      <img class="ab-img-a" data-src="./studio1s.jpeg" src="" alt="Maternity Photography">
+      <img class="ab-img-b" data-src="./studio2s.jpeg" src="" alt="Newborn Shoot">
+      <div class="ab-badge"><b>5★</b><span>Rated<br>Studio</span></div>
+    </div>
+    <div class="about-txt reveal-r">
+      <div class="stag">Our Story</div>
+      <h2 class="sh1">Where Art Meets <em>Emotion</em></h2>
+      <div class="div-gold"></div>
+      <p class="sp">SFS Studios is Hyderabad's most loved premium photography studio, specialising in capturing life's most tender moments. From the ethereal glow of maternity to the first smile of a newborn — every frame is a story, every image a legacy.</p>
+      <p class="sp" style="margin-top:14px;">Located in L.B. Nagar, we offer both indoor and outdoor setups with fully bespoke, customised themes designed around your unique vision. Our creative team ensures every shoot is a deeply personal, magical experience.</p>
+      <div class="about-chips">
+        <span class="chip">Premium Lighting</span>
+        <span class="chip">Indoor &amp; Outdoor</span>
+        <span class="chip">Custom Themes</span>
+        <span class="chip">Professional Editing</span>
+        <span class="chip">High-Quality Albums</span>
+        <span class="chip">Express Delivery</span>
+        <span class="chip">Safe for Newborns</span>
+        <span class="chip">20+ Themes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section id="services">
+  <div class="svc-hd reveal">
+    <div class="stag">What We Offer</div>
+    <h2 class="sh1">Our <em>Services</em></h2>
+    <p class="sp">From the first moment of life to every joyful milestone — we capture it all with artistry and care.</p>
+  </div>
+  <div class="svc-grid" id="svcGrid"></div>
+</section>
+
+<!-- ═══════════ GALLERY ═══════════ -->
+<section id="gallery">
+  <div class="gal-hd">
+    <div>
+      <div class="stag reveal">Our Work</div>
+      <h2 class="sh1 reveal">The <em>Gallery</em></h2>
+    </div>
+    <div class="gal-filters" id="galFilters"></div>
+  </div>
+  <div class="gal-grid" id="galGrid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lb">
+  <button class="lb-x" id="lbX"><i class="fas fa-times"></i></button>
+  <button class="lb-arr" id="lb-prev"><i class="fas fa-chevron-left"></i></button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-arr" id="lb-next"><i class="fas fa-chevron-right"></i></button>
+  <div class="lb-ctr" id="lbCtr">1 / 12</div>
+  <div class="lb-thumb-strip" id="lbThumbs"></div>
+</div>
+
+<!-- ═══════════ THEMES MARQUEE ═══════════ -->
+<section id="themes">
+  <div class="themes-hd reveal">
+    <div class="stag">Creative Concepts</div>
+    <h2 class="sh1">Explore Our <em>Theme Collections</em></h2>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-row row1" id="mq1"></div>
+    <div class="marquee-row row2" id="mq2"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PROCESS (NEW) ═══════════ -->
+<section id="process">
+  <div class="proc-wrap">
+    <div class="proc-steps reveal-l" id="procSteps"></div>
+    <div class="proc-img-stack reveal-r">
+      <img data-src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=700&q=80" src="" alt="Process">
+      <img data-src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80" src="" alt="Process">
+      <img data-src="https://images.unsplash.com/photo-1596463989429-14b26cf6e3b1?w=400&q=80" src="" alt="Process">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING (NEW) ═══════════ -->
+<section id="pricing">
+  <div class="pricing-hd reveal">
+    <div class="stag">Investment</div>
+    <h2 class="sh1">Transparent <em>Pricing</em></h2>
+    <p class="sp" style="margin:0 auto;">Premium memories at packages designed for every family. All packages include professional editing and digital delivery.</p>
+  </div>
+  <div class="pricing-grid" id="pricingGrid"></div>
+</section>
+
+<!-- ═══════════ MILESTONES TIMELINE (NEW) ═══════════ -->
+<section id="milestones">
+  <div class="timeline-hd reveal">
+    <div class="stag">Baby's Journey</div>
+    <h2 class="sh1">Milestone <em>Photography</em></h2>
+    <p class="sp" style="margin:0 auto;max-width:540px;">Document every magical stage of your little one's first year with our curated milestone shoot packages.</p>
+  </div>
+  <div class="timeline" id="tlWrap"></div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section id="testimonials">
+  <div class="testi-hd reveal">
+    <div class="stag">Client Love</div>
+    <h2 class="sh1"><em>Stories</em> from Our Families</h2>
+  </div>
+  <div class="testi-grid" id="testiGrid"></div>
+</section>
+
+<!-- ═══════════ FAQ (NEW) ═══════════ -->
+<section id="faq">
+  <div class="faq-wrap">
+    <div>
+      <div class="stag reveal">Got Questions?</div>
+      <h2 class="sh1 reveal">Frequently <em>Asked</em></h2>
+      <div class="div-gold" style="margin-bottom:32px;"></div>
+      <div class="faq-list reveal" id="faqList"></div>
+    </div>
+    <div class="faq-cta-box reveal-r">
+      <div class="faq-cta-icon"><i class="fas fa-camera-retro"></i></div>
+      <h3>Ready to Create <em style="color:var(--gold);font-style:italic;">Magic?</em></h3>
+      <p>Still have questions? Our team is here to help you plan the perfect shoot experience for your family.</p>
+      <a href="https://wa.me/917997765171" target="_blank" class="btn-gold" style="display:inline-flex;margin-bottom:12px;">
+        <i class="fab fa-whatsapp"></i> Chat With Us
+      </a>
+      <br>
+      <a href="tel:7997765171" class="btn-ghost" style="display:inline-flex;margin-top:10px;">
+        <i class="fas fa-phone"></i> Call 7997765171
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BOOKING ═══════════ -->
+<section id="booking">
+  <div class="book-wrap">
+    <div class="book-info reveal-l">
+      <div class="stag">Get in Touch</div>
+      <h2 class="sh1">Book Your <em>Session</em></h2>
+      <div class="div-gold"></div>
+      <p class="sp">Ready to create memories that last forever? Reach out and let's craft something beautiful together.</p>
+      <div class="contact-items">
+        <div class="ci"><div class="ci-ico"><i class="fas fa-phone"></i></div><div class="ci-lbl"><strong>Call / WhatsApp</strong><span>7997765171</span></div></div>
+        <div class="ci"><div class="ci-ico"><i class="fas fa-map-marker-alt"></i></div><div class="ci-lbl"><strong>Location</strong><span>L.B. Nagar, B.N. Reddy, Hyderabad</span></div></div>
+        <div class="ci"><div class="ci-ico"><i class="fas fa-clock"></i></div><div class="ci-lbl"><strong>Hours</strong><span>Mon–Sun: 8 AM – 9 PM</span></div></div>
+        <div class="ci"><div class="ci-ico"><i class="fab fa-instagram"></i></div><div class="ci-lbl"><strong>Instagram</strong><span>@SFS_STUDIO_1996116</span></div></div>
+      </div>
+    </div>
+    <div class="book-form reveal-r">
+      <div class="bftitle">Reserve Your Date</div>
+      <div class="f-row">
+        <div class="fg"><label>Full Name</label><input type="text" id="fName" placeholder="Your name"></div>
+        <div class="fg"><label>Phone</label><input type="tel" id="fPhone" placeholder="+91 XXXXX XXXXX"></div>
+      </div>
+      <div class="fg"><label>Service</label>
+        <select id="fService">
+          <option value="">Select a service...</option>
+          <option>Maternity Photography</option>
+          <option>Newborn Baby Shoot</option>
+          <option>Pre-Birthday Shoot</option>
+          <option>Monthly Theme-Based Baby Shoots</option>
+          <option>Premium Indoor Setup</option>
+          <option>Outdoor Setup</option>
+          <option>Customised Concept Photography</option>
+        </select>
+      </div>
+      <div class="f-row">
+        <div class="fg"><label>Date</label><input type="date" id="fDate"></div>
+        <div class="fg"><label>Time Slot</label>
+          <select id="fTime">
+            <option value="">Select time...</option>
+            <option>8 AM – 10 AM</option><option>10 AM – 12 PM</option>
+            <option>12 PM – 2 PM</option><option>2 PM – 4 PM</option>
+            <option>4 PM – 6 PM</option><option>6 PM – 9 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Message (optional)</label>
+        <textarea id="fMsg" placeholder="Tell us your theme ideas, special requirements..."></textarea>
+      </div>
+      <button class="btn-book" onclick="submitBooking()">
+        <i class="fas fa-calendar-check"></i> Confirm Booking
+      </button>
+      <a class="wa-btn" href="https://wa.me/917997765171" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <div class="ft-logo"><b>SFS</b> Studios</div>
+      <p>Premium Photography Studio capturing life's most precious moments with artistry and love.</p>
+      <div class="ft-socials">
+        <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="soc"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="soc"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/917997765171" class="soc"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="ft-col"><h4>Services</h4><ul>
+      <li><a href="#services">Maternity Photography</a></li>
+      <li><a href="#services">Newborn Baby Shoot</a></li>
+      <li><a href="#services">Pre-Birthday Shoot</a></li>
+      <li><a href="#services">Monthly Themes</a></li>
+      <li><a href="#services">Concept Photography</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Quick Links</h4><ul>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#booking">Book Now</a></li>
+    </ul></div>
+    <div class="ft-col"><h4>Contact</h4><ul>
+      <li><a href="tel:7997765171">7997765171</a></li>
+      <li><a href="#">L.B. Nagar, Hyderabad</a></li>
+      <li><a href="#">Mon–Sun: 8AM–9PM</a></li>
+      <li><a href="#">@SFS_STUDIO_1996116</a></li>
+    </ul></div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 SFS Studios. All rights reserved.</div>
+    <div class="ft-tagline">"Creating Memories That Last Forever" ✨</div>
+  </div>
+</footer>
+
+<!-- FLOATING -->
+<a href="https://wa.me/917997765171" class="float-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+<!-- ═══════════════════════════════════════
+   JAVASCRIPT — DATA ARRAYS & LOGIC
+═══════════════════════════════════════ -->
+<script>
+/* ─────── DATA ARRAYS (edit to add images / content) ─────── */
+
+const HERO = [
+  { src:"./studio1s.jpeg", alt:"Maternity Photography" },
+  { src:"./studio2s.jpeg", alt:"Newborn Baby Shoot" },
+  { src:"./studio3s.jpeg", alt:"Pre Birthday Shoot" }
+//   { src:"https://images.unsplash.com/photo-1596463989429-14b26cf6e3b1?w=1600&q=80", alt:"Pre Birthday Shoot" }
+];
+
+const SERVICES = [
+  { ico:"fa-person-pregnant", name:"Maternity Photography", desc:"Ethereal sessions celebrating the beauty of motherhood with premium indoor and outdoor setups.", tag:"Indoor & Outdoor" },
+  { ico:"fa-baby", name:"Newborn Baby Shoot", desc:"Gentle, safe newborn photography capturing the tiniest fingers and sweetest first days.", tag:"Newborn Specialist" },
+  { ico:"fa-cake-candles", name:"Pre-Birthday Shoot", desc:"Vibrant, theme-based sessions turning every milestone into an unforgettable visual story.", tag:"Theme-Based" },
+  { ico:"fa-calendar-days", name:"Monthly Theme Shoots", desc:"Monthly setups documenting your baby's growth with creative, ever-changing concepts.", tag:"12-Month Package" },
+  { ico:"fa-house", name:"Premium Indoor Setup", desc:"State-of-the-art studio with professional lighting, premium props and bespoke backdrops.", tag:"Studio" },
+  { ico:"fa-tree", name:"Outdoor Setups", desc:"Natural light sessions at handpicked locations creating organic, timeless imagery.", tag:"Natural Light" },
+  { ico:"fa-wand-magic-sparkles", name:"Concept Photography", desc:"Fully art-directed concept shoots tailored entirely to your imagination and vision.", tag:"Fully Custom" },
+  { ico:"fa-book-open", name:"Premium Albums", desc:"High-quality printed albums and digital galleries with professional colour grading.", tag:"Print & Digital" }
+];
+
+const GALLERY = [
+  { src:"https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=700&q=80", label:"Maternity Glow", cat:"maternity" },
+  { src:"https://images.unsplash.com/photo-1519689680058-324335c77eba?w=700&q=80", label:"Newborn Dreams", cat:"newborn" },
+  { src:"https://images.unsplash.com/photo-1596463989429-14b26cf6e3b1?w=700&q=80", label:"Birthday Magic", cat:"birthday" },
+  { src:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=700&q=80", label:"Family Love", cat:"family" },
+  { src:"https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?w=700&q=80", label:"Tiny Hands", cat:"newborn" },
+  { src:"https://images.unsplash.com/photo-1591035897819-f4bdf739f446?w=700&q=80", label:"Milestone Shoot", cat:"milestone" },
+  { src:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&q=80", label:"Studio Portrait", cat:"studio" },
+  { src:"https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=700&q=80", label:"Outdoor Bliss", cat:"outdoor" },
+  { src:"https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=700&q=80", label:"Cake Smash", cat:"birthday" },
+  { src:"https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&q=80", label:"Maternity Dreams", cat:"maternity" },
+  { src:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=80", label:"Sweet Newborn", cat:"newborn" },
+  { src:"https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=700&q=80", label:"Family Portrait", cat:"family" }
+];
+
+const THEMES = [
+  { src:"https://images.unsplash.com/photo-1596463989429-14b26cf6e3b1?w=500&q=80", label:"Celestial Dreams" },
+  { src:"https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?w=500&q=80", label:"Garden Blooms" },
+  { src:"https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=500&q=80", label:"Fruity Fiesta" },
+  { src:"https://images.unsplash.com/photo-1519689680058-324335c77eba?w=500&q=80", label:"Cloud Nine" },
+  { src:"https://images.unsplash.com/photo-1543352634-99a5d50ae78e?w=500&q=80", label:"Boho Chic" },
+  { src:"https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&q=80", label:"Ocean Vibes" },
+  { src:"https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=500&q=80", label:"Woodland Forest" },
+  { src:"https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=500&q=80", label:"Golden Hour" }
+];
+
+const PROCESS = [
+  { ico:"fa-phone", step:"01", title:"Consultation Call", desc:"We begin with a warm consultation to understand your vision, preferred themes, and shoot requirements." },
+  { ico:"fa-palette", step:"02", title:"Theme Planning", desc:"Our creative team designs a fully customised shoot concept with mood boards, props, and setup details." },
+  { ico:"fa-camera", step:"03", title:"The Shoot Day", desc:"Our photographers create a relaxed, joyful atmosphere ensuring every moment is captured naturally." },
+  { ico:"fa-wand-magic-sparkles", step:"04", title:"Professional Editing", desc:"Each image undergoes careful colour grading and retouching to achieve a premium, timeless look." },
+  { ico:"fa-box-open", step:"05", title:"Gallery Delivery", desc:"Your high-resolution digital gallery and premium printed album are delivered within the agreed timeline." }
+];
+
+const PRICING = [
+  {
+    tier:"Starter", name:"Silver Package", price:"8,999",
+    note:"Perfect for a single session", featured:false,
+    features:["60-minute session","1 backdrop/theme","20 edited digital photos","Basic retouching","Online gallery delivery","Print-ready files"]
+  },
+  {
+    tier:"Most Popular", name:"Gold Package", price:"14,999",
+    note:"Our best-selling package", featured:true,
+    features:["2-hour premium session","2 backdrops/themes","50 edited digital photos","Advanced retouching","Online gallery + USB","1 printed album (20 pages)","WhatsApp delivery sneak peek"]
+  },
+  {
+    tier:"Premium", name:"Platinum Package", price:"24,999",
+    note:"The ultimate experience", featured:false,
+    features:["4-hour luxury session","Unlimited theme changes","100+ edited digital photos","Full professional retouching","Premium printed album (40 pages)","Canvas wall art print","Priority booking & support"]
+  }
+];
+
+const MILESTONES = [
+  { age:"Newborn · Day 5–12", title:"Welcome to the World", desc:"The most fleeting and precious phase. We create safe, warm newborn portraits with gentle posing and dream-like setups.", img:"https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&q=80" },
+  { age:"3 Months", title:"Those First Smiles", desc:"Expressive, alert and full of gummy smiles — this phase deserves to be celebrated in colour and light.", img:"https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?w=600&q=80" },
+  { age:"6 Months", title:"Sitting Up & Exploring", desc:"Your baby is finding their personality. We create vibrant, playful setups that reflect this joyful energy.", img:"https://images.unsplash.com/photo-1591035897819-f4bdf739f446?w=600&q=80" },
+  { age:"9 Months", title:"On the Move", desc:"Crawling, pulling up, full of mischief — this stage is pure gold. Candid, documentary-style shoots work beautifully.", img:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" },
+  { age:"12 Months · 1st Birthday", title:"Cake Smash & Celebrate", desc:"The grand finale! We design a full cake smash set with custom themes, balloons, and unlimited joy.", img:"https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&q=80" }
+];
+
+const TESTIMONIALS = [
+  { text:"SFS Studios transformed our maternity shoot into pure magic. Every frame tells a story. We will cherish these photos forever — absolutely world-class service!", name:"Priya Sharma", role:"Maternity Client", stars:5 },
+  { text:"Our newborn shoot was stunning. The team was incredibly gentle with our baby. The photos are breathtaking. Highly recommend to every new parent!", name:"Anand & Deepika", role:"Newborn Shoot Client", stars:5 },
+  { text:"The pre-birthday theme shoot exceeded every expectation. Creative concepts, premium props, stunning edits. Our baby looked like absolute royalty!", name:"Kavya Reddy", role:"Birthday Shoot Client", stars:5 },
+  { text:"Professional, warm, and incredibly talented. They captured our family in a way we never imagined possible. The album they delivered is priceless.", name:"Suresh Family", role:"Family Portrait Client", stars:5 },
+  { text:"From first consultation to final album — flawless. The attention to detail is remarkable. Best photography studio in Hyderabad, no question.", name:"Meera & Rajan", role:"Concept Shoot Client", stars:5 },
+  { text:"Booked the 12-month milestone package — worth every rupee. Each month tells a new chapter of our little one's journey. Pure magic!", name:"Lakshmi Nair", role:"Milestone Package Client", stars:5 }
+];
+
+const FAQS = [
+  { q:"How far in advance should I book?", a:"We recommend booking 2–4 weeks in advance, especially for weekends. For newborn shoots, it's best to book during your second trimester so we can schedule around your due date." },
+  { q:"Are the shoots safe for newborns?", a:"Absolutely. Baby safety is our top priority. Our photographers are specially trained in newborn posing, the studio is kept warm, and we always work at the baby's pace with no rush." },
+  { q:"Can we choose our own theme?", a:"Yes! We love custom concepts. Share your ideas during the consultation and our creative team will build a unique mood board and setup around your vision." },
+  { q:"What should we wear / bring?", a:"We guide you with a detailed style sheet before your shoot. Generally, soft neutral tones photograph beautifully. For newborns, just bring milk, nappies and your little one!" },
+  { q:"How long after the shoot do we receive photos?", a:"Edited photos are typically delivered within 7–10 working days via a private online gallery. Rush delivery (2–3 days) is available on request." },
+  { q:"Do you do outdoor shoots?", a:"Yes! We have partnered locations for outdoor sessions and also work at locations of your choosing. Outdoor shoots are best scheduled in the golden hour." },
+  { q:"What is your cancellation policy?", a:"We understand life with babies is unpredictable. We offer one free reschedule with 48 hours notice. Please see our full policy on booking confirmation." }
+];
+
+const STATS_DATA = [
+  { n:"500+", l:"Happy Families", ico:"fa-heart" },
+  { n:"1,200+", l:"Shoots Completed", ico:"fa-camera" },
+  { n:"8+", l:"Years Experience", ico:"fa-star" },
+  { n:"20+", l:"Theme Concepts", ico:"fa-palette" },
+  { n:"5★", l:"Average Rating", ico:"fa-award" },
+  { n:"100%", l:"Satisfaction Guaranteed", ico:"fa-shield-heart" },
+  { n:"500+", l:"Happy Families", ico:"fa-heart" },
+  { n:"1,200+", l:"Shoots Completed", ico:"fa-camera" },
+  { n:"8+", l:"Years Experience", ico:"fa-star" },
+  { n:"20+", l:"Theme Concepts", ico:"fa-palette" },
+  { n:"5★", l:"Average Rating", ico:"fa-award" },
+  { n:"100%", l:"Satisfaction Guaranteed", ico:"fa-shield-heart" }
+];
+
+/* ─────── BUILD FUNCTIONS ─────── */
+
+/* HERO */
+function buildHero(){
+  const track = document.getElementById('heroTrack');
+  const dots = document.getElementById('heroDots');
+  HERO.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className='hero-slide'+(i===0?' on':'');
+    d.innerHTML=`<img src="${s.src}" alt="${s.alt}" loading="${i===0?'eager':'lazy'}">`;
+    track.appendChild(d);
+    const dot=document.createElement('div');
+    dot.className='hdot'+(i===0?' on':'');
+    dots.appendChild(dot);
+  });
+  let cur=0;
+  setInterval(()=>{
+    const sl=document.querySelectorAll('.hero-slide');
+    const dt=document.querySelectorAll('.hdot');
+    sl[cur].classList.remove('on');dt[cur].classList.remove('on');
+    cur=(cur+1)%HERO.length;
+    sl[cur].classList.add('on');dt[cur].classList.add('on');
+  },5000);
+}
+
+/* STATS */
+function buildStats(){
+  const t=document.getElementById('statsTrack');
+  STATS_DATA.forEach(s=>{
+    t.innerHTML+=`<div class="stat-chip">
+      <i class="fas ${s.ico} stat-ico"></i>
+      <div><div class="stat-num">${s.n}</div><div class="stat-lbl">${s.l}</div></div>
+    </div>`;
+  });
+}
+
+/* SERVICES */
+function buildServices(){
+  const g=document.getElementById('svcGrid');
+  SERVICES.forEach((s,i)=>{
+    const c=document.createElement('div');
+    c.className='svc-card reveal-s';
+    c.innerHTML=`
+      <div class="svc-n">${String(i+1).padStart(2,'0')}</div>
+      <div class="svc-ico"><i class="fas ${s.ico}"></i></div>
+      <div class="svc-name">${s.name}</div>
+      <p class="svc-desc">${s.desc}</p>
+      <span class="svc-tag">${s.tag}</span>`;
+    g.appendChild(c);
+  });
+}
+
+/* GALLERY */
+let lbImages=[],lbIdx=0;
+function buildFilters(){
+  const cats=['all',...new Set(GALLERY.map(g=>g.cat))];
+  const wrap=document.getElementById('galFilters');
+  cats.forEach(cat=>{
+    const b=document.createElement('button');
+    b.className='fbtn'+(cat==='all'?' on':'');
+    b.textContent=cat.charAt(0).toUpperCase()+cat.slice(1);
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      buildGallery(cat);
+    });
+    wrap.appendChild(b);
+  });
+}
+function buildGallery(filter='all'){
+  const grid=document.getElementById('galGrid');
+  const filtered=filter==='all'?GALLERY:GALLERY.filter(g=>g.cat===filter);
+  lbImages=filtered;
+  grid.innerHTML='';
+  filtered.forEach((img,i)=>{
+    const item=document.createElement('div');
+    item.className='gal-item';
+    item.innerHTML=`
+      <img data-src="${img.src}" src="" alt="${img.label}" loading="lazy">
+      <div class="gal-ov"><span class="gal-lbl">${img.label}</span></div>
+      <div class="gal-zoom"><i class="fas fa-expand"></i></div>`;
+    item.addEventListener('click',()=>openLb(i));
+    grid.appendChild(item);
+  });
+  lazyLoad();
+  buildLbThumbs();
+}
+
+/* LIGHTBOX */
+function buildLbThumbs(){
+  const strip=document.getElementById('lbThumbs');
+  strip.innerHTML='';
+  lbImages.forEach((img,i)=>{
+    const t=document.createElement('div');
+    t.className='lb-th'+(i===lbIdx?' on':'');
+    t.innerHTML=`<img src="${img.src.replace('w=700','w=80')}" alt="">`;
+    t.addEventListener('click',()=>{ lbIdx=i;updateLb(); });
+    strip.appendChild(t);
+  });
+}
+function openLb(i){
+  lbIdx=i;document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';updateLb();
+}
+function updateLb(){
+  const img=document.getElementById('lb-img');
+  const ctr=document.getElementById('lbCtr');
+  img.style.opacity='0';
+  setTimeout(()=>{
+    img.src=lbImages[lbIdx].src.replace('w=700','w=1400');
+    img.onload=()=>{img.style.opacity='1';};
+    ctr.textContent=`${lbIdx+1} / ${lbImages.length}`;
+    document.querySelectorAll('.lb-th').forEach((t,i)=>{
+      t.classList.toggle('on',i===lbIdx);
+    });
+  },220);
+}
+document.getElementById('lbX').addEventListener('click',closeLb);
+document.getElementById('lb-prev').addEventListener('click',()=>{ lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;updateLb();});
+document.getElementById('lb-next').addEventListener('click',()=>{ lbIdx=(lbIdx+1)%lbImages.length;updateLb();});
+document.getElementById('lb').addEventListener('click',e=>{if(e.target===document.getElementById('lb'))closeLb();});
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lb').classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft'){lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;updateLb();}
+  if(e.key==='ArrowRight'){lbIdx=(lbIdx+1)%lbImages.length;updateLb();}
+});
+
+/* THEMES */
+function buildThemes(){
+  const half=THEMES.length;
+  const row1=document.getElementById('mq1');
+  const row2=document.getElementById('mq2');
+  [...THEMES,...THEMES].forEach((t,i)=>{
+    const card=`<div class="theme-card"><img src="${t.src}" alt="${t.label}" loading="lazy"><div class="theme-card-lbl">${t.label}</div></div>`;
+    if(i<half*2) row1.innerHTML+=card;
+  });
+  [...THEMES,...THEMES].forEach((t,i)=>{
+    const card=`<div class="theme-card"><img src="${t.src}" alt="${t.label}" loading="lazy"><div class="theme-card-lbl">${t.label}</div></div>`;
+    row2.innerHTML+=card;
+  });
+}
+
+/* PROCESS */
+function buildProcess(){
+  const wrap=document.getElementById('procSteps');
+  const sectionHd=document.createElement('div');
+  sectionHd.innerHTML=`<div class="stag" style="margin-bottom:14px;">How It Works</div><h2 class="sh1" style="margin-bottom:14px;">Our <em>Process</em></h2><div class="div-gold"></div>`;
+  wrap.appendChild(sectionHd);
+  PROCESS.forEach(p=>{
+    const step=document.createElement('div');
+    step.className='proc-step';
+    step.innerHTML=`
+      <div class="proc-step-num">${p.step}</div>
+      <div class="proc-step-ico"><i class="fas ${p.ico}"></i></div>
+      <div class="proc-step-txt"><h4>${p.title}</h4><p>${p.desc}</p></div>`;
+    wrap.appendChild(step);
+  });
+}
+
+/* PRICING */
+function buildPricing(){
+  const g=document.getElementById('pricingGrid');
+  PRICING.forEach(p=>{
+    const c=document.createElement('div');
+    c.className='price-card reveal-s'+(p.featured?' featured':'');
+    c.innerHTML=`
+      <div class="price-tier">${p.tier}</div>
+      <div class="price-name">${p.name}</div>
+      <div class="price-amt"><sup>₹</sup>${p.price}</div>
+      <div class="price-note">${p.note}</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">${p.features.map(f=>`<li><i class="fas fa-check"></i>${f}</li>`).join('')}</ul>
+      <button class="price-btn ${p.featured?'gold':'outline'}" onclick="bookFromPricing('${p.name}')">
+        ${p.featured?'<i class=\'fas fa-star\'></i> ':''}Book This Package
+      </button>`;
+    g.appendChild(c);
+  });
+}
+function bookFromPricing(name){
+  document.getElementById('fService').value=name.includes('Silver')||name.includes('Gold')||name.includes('Platinum')?'':name;
+  document.getElementById('booking').scrollIntoView({behavior:'smooth'});
+}
+
+/* MILESTONES */
+function buildMilestones(){
+  const wrap=document.getElementById('tlWrap');
+  MILESTONES.forEach(m=>{
+    const item=document.createElement('div');
+    item.className='tl-item reveal';
+    item.innerHTML=`
+      <div class="tl-dot"></div>
+      <div class="tl-age">${m.age}</div>
+      <div class="tl-title">${m.title}</div>
+      <p class="tl-desc">${m.desc}</p>
+      <img class="tl-img" data-src="${m.img}" src="" alt="${m.title}" loading="lazy">`;
+    wrap.appendChild(item);
+  });
+}
+
+/* TESTIMONIALS */
+function buildTestimonials(){
+  const g=document.getElementById('testiGrid');
+  TESTIMONIALS.forEach(t=>{
+    g.innerHTML+=`
+      <div class="testi-card reveal-s">
+        <div class="testi-q">"</div>
+        <div class="testi-stars">${'★'.repeat(t.stars)}</div>
+        <p class="testi-txt">${t.text}</p>
+        <div class="testi-auth">
+          <div class="testi-av" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--gold);">${t.name.charAt(0)}</div>
+          <div class="testi-name"><strong>${t.name}</strong><span>${t.role}</span></div>
+        </div>
+      </div>`;
+  });
+}
+
+/* FAQ */
+function buildFAQ(){
+  const list=document.getElementById('faqList');
+  FAQS.forEach(f=>{
+    const item=document.createElement('div');
+    item.className='faq-item';
+    item.innerHTML=`
+      <button class="faq-q">
+        <span>${f.q}</span>
+        <div class="faq-icon"><i class="fas fa-plus"></i></div>
+      </button>
+      <div class="faq-a"><p>${f.a}</p></div>`;
+    item.querySelector('.faq-q').addEventListener('click',()=>{
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(x=>x.classList.remove('open'));
+      if(!isOpen)item.classList.add('open');
+    });
+    list.appendChild(item);
+  });
+}
+
+/* BOOKING → WHATSAPP */
+function submitBooking(){
+  const name=document.getElementById('fName').value||'Customer';
+  const phone=document.getElementById('fPhone').value||'-';
+  const service=document.getElementById('fService').value||'-';
+  const date=document.getElementById('fDate').value||'-';
+  const time=document.getElementById('fTime').value||'-';
+  const msg=document.getElementById('fMsg').value||'';
+  const text=`Hello SFS Studios! ✨\n\n*New Booking Request*\n👤 Name: ${name}\n📞 Phone: ${phone}\n📸 Service: ${service}\n📅 Date: ${date}\n⏰ Time: ${time}${msg?'\n💬 '+msg:''}\n\nLooking forward to creating memories together!`;
+  window.open(`https://wa.me/917997765171?text=${encodeURIComponent(text)}`,'_blank');
+  showToast('Booking sent via WhatsApp! ✨');
+}
+
+/* TOAST */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+/* LAZY LOAD */
+function lazyLoad(){
+  const imgs=document.querySelectorAll('img[data-src]');
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const img=e.target;
+        img.src=img.dataset.src;
+        img.onload=()=>img.style.opacity='1';
+        img.style.transition='opacity .5s';
+        obs.unobserve(img);
+      }
+    });
+  },{threshold:.08});
+  imgs.forEach(img=>{img.style.opacity='0';obs.observe(img);});
+}
+
+/* PARTICLES */
+function spawnParticles(){
+  const hero=document.getElementById('hero');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='ptcl';
+    const sz=Math.random()*3+1;
+    p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;
+      animation-duration:${Math.random()*12+8}s;animation-delay:${Math.random()*12}s;
+      opacity:0;`;
+    hero.appendChild(p);
+  }
+}
+
+/* CUSTOM CURSOR */
+function initCursor(){
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  function animRing(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a,button,.gal-item,.svc-card,.price-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='54px';ring.style.height='54px';ring.style.borderColor='rgba(201,168,76,.9)';});
+    el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(201,168,76,.5)';});
+  });
+}
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('stuck',window.scrollY>60);
+  document.getElementById('btt').classList.toggle('show',window.scrollY>300);
+});
+
+/* THEME TOGGLE */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  document.documentElement.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('themeIco').className=isDark?'fas fa-sun':'fas fa-moon';
+});
+
+/* MOBILE MENU */
+const ham=document.getElementById('ham');
+const mob=document.getElementById('mobMenu');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');mob.classList.remove('open');}));
+
+/* GSAP ANIMATIONS */
+function initGSAP(){
+  gsap.registerPlugin(ScrollTrigger);
+  // Hero
+  gsap.timeline({delay:2.3})
+    .from('.hero-badge',{y:24,opacity:0,duration:.7,ease:'power3.out'})
+    .from('#heroH1',{y:60,opacity:0,duration:1,ease:'power3.out'},'-=.3')
+    .from('.hero-p',{y:30,opacity:0,duration:.8,ease:'power3.out'},'-=.4')
+    .from('.hero-btns',{y:30,opacity:0,duration:.8,ease:'power3.out'},'-=.4');
+  // Scroll reveals
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    gsap.to(el,{y:0,opacity:1,duration:.9,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.reveal-l').forEach(el=>{
+    gsap.to(el,{x:0,opacity:1,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.reveal-r').forEach(el=>{
+    gsap.to(el,{x:0,opacity:1,duration:1,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.reveal-s').forEach((el,i)=>{
+    gsap.to(el,{scale:1,opacity:1,duration:.75,ease:'back.out(1.5)',
+      delay:(i%4)*.08,
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
+  });
+  // Stagger service cards
+  ScrollTrigger.create({
+    trigger:'#services',start:'top 70%',once:true,
+    onEnter:()=>{
+      gsap.to('.svc-card',{opacity:1,scale:1,duration:.7,stagger:.08,ease:'back.out(1.4)'});
+    }
+  });
+  // Stagger pricing
+  ScrollTrigger.create({
+    trigger:'#pricing',start:'top 70%',once:true,
+    onEnter:()=>{
+      gsap.to('.price-card',{opacity:1,scale:1,duration:.75,stagger:.12,ease:'back.out(1.4)'});
+    }
+  });
+  // Parallax hero
+  gsap.to('.hero-slide.on img',{
+    yPercent:20,ease:'none',
+    scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1}
+  });
+}
+
+/* LOADER HIDE */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('out'),2000);
+});
+
+/* INIT */
+document.addEventListener('DOMContentLoaded',()=>{
+  buildHero();
+  buildStats();
+  buildServices();
+  buildFilters();
+  buildGallery();
+  buildThemes();
+  buildProcess();
+  buildPricing();
+  buildMilestones();
+  buildTestimonials();
+  buildFAQ();
+  lazyLoad();
+  spawnParticles();
+  initCursor();
+  setTimeout(initGSAP,120);
+});
+</script>
+</body>
+</html>
